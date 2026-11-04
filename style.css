@@ -281,3 +281,39 @@ html {
   text-align: center;
   color: white;
 }
+
+.about-card {
+  background-color: rgba(117, 112, 112, 0.175);
+  border: 2px solid rgba(255, 255, 255, 0.249);
+  border-radius: 20px;
+  padding: 20px;
+  margin: 40px auto; /* Adds space above and below the form */
+  width: 50%; /* Adjusted to fit nicely within the S-container */
+  text-align: center; /* Centers the text and image within the card */
+}
+
+.mahaha-image {
+  display: block;
+  margin: 20px auto; /* Centers the image horizontally */
+  max-width: 100%; /* Ensures the image scales down on smaller screens */
+  height: auto; /* Maintains aspect ratio */
+  border-radius: 10px; /* Optional: adds rounded corners to the image */
+}
+
+#about {
+  /* Adjust 80px to match the actual height of your sticky header */
+  scroll-margin-top: 80px; 
+}
+ .S-container {
+  animation: hover 3s ease-in-out infinite;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(96, 231, 255, 0.662);
+  border-top: 2px solid rgba(255, 255, 255, 0.249);
+  font-family: 'Quantico', 'arial', 'sans-serif';
+  color: white;
+  box-shadow: outset 0px 0px 20px 5px rgba(255, 255, 255, 0.131);
+}
