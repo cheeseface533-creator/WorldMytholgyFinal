@@ -1,0 +1,324 @@
+/* ==========================================================================
+   GLOBAL LAYOUT FIXES
+   ========================================================================== */
+body { 
+  background-color: black; 
+  margin: 0; 
+  padding: 0;
+} 
+
+/* Changed from position:fixed to a flexbox container that fills the screen height */
+.splash { 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  flex-direction: column; /* Stacks the titles and buttons vertically */
+  min-height: 100vh;      /* Ensures it takes exactly the full window height */
+  width: 100%; 
+  background-color: rgba(0, 0, 0, 0.8); 
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Puts a clean space between your two buttons */
+}
+
+/* ==========================================================================
+   TITLE BLOCK STYLES
+   ========================================================================== */
+.Titles { 
+  font-family: 'Quantico', 'arial', 'sans-serif'; 
+  color: white; 
+  text-align: center; 
+  margin: 5px; 
+  padding: 5px 0; 
+  border: 2px solid rgba(255, 255, 255, 0.249); 
+  width: 800px; 
+  border-radius: 30px; 
+  background-color: rgba(96, 231, 255, 0.662); 
+  
+  /* Layout setup for the gradient glow backdrop */
+  position: relative; 
+  z-index: 0; 
+  
+  /* Animations and smooth transition states */
+  animation: fadeIn 4s ease-in-out, hover 3s ease-in-out infinite; 
+  transition: all 0.3s ease-out; 
+} 
+
+/* Constant glowing title background */
+.Titles::before {
+  content: "";
+  background: linear-gradient(
+    45deg, 
+    #3bc9f0, 
+    #4023b4, 
+    #595fce, 
+    #097282, 
+    #167c83c7, 
+    #13f3ff, 
+    #1aa0af, 
+    #41c5f5
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 600%;
+  z-index: -1;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  filter: blur(15px); 
+  animation: glowing 60s linear infinite;
+  border-radius: 30px; 
+  opacity: 1; 
+  cursor: default;
+}
+
+/* Layer isolated heading typography over the background effects */
+h1, h2 {
+  position: relative;
+  z-index: 1;
+  margin: 10px 0;
+  cursor: default;
+}
+
+h1 { 
+  font-size: 75px; 
+} 
+
+h2 { 
+  font-size: 40px; 
+} 
+
+.Titles:hover { 
+  box-shadow: 0px 0px 20px 5px rgba(96, 231, 255, 0.662); 
+  transform: scale(1.05); 
+} 
+
+/* ==========================================================================
+   BUTTON STYLES
+   ========================================================================== */
+.rb { 
+  margin: 40px 0; /* Adjusted margin to prevent breaking alignment layout */
+  padding: 15px 30px; 
+  border: none; 
+  outline: none; 
+  color: #FFF; 
+  cursor: pointer; 
+  position: relative; 
+  z-index: 0; 
+  border-radius: 12px; 
+  font-family: 'Quantico', Aldrich, sans-serif; 
+  font-size: 1.2rem; 
+  font-weight: bold; 
+  display: inline-block; 
+  width: 290px; /* Slightly widened so 'Book your appointment!' stays beautifully on one line */
+} 
+
+.rb::after { 
+  content: ""; 
+  z-index: -1; 
+  position: absolute; 
+  width: 100%; 
+  height: 100%; 
+  background-color: #222; 
+  left: 0; 
+  top: 0; 
+  border-radius: 10px; 
+} 
+
+/* Hidden glow state by default */ 
+.rb::before { 
+  content: ""; 
+  background: linear-gradient( 
+    45deg, 
+    #3bc9f0, 
+    #4023b4, 
+    #595fce, 
+    #097282, 
+    #167c83c7, 
+    #13f3ff, 
+    #1aa0af, 
+    #41c5f5 
+  ); 
+  position: absolute; 
+  top: -2px; 
+  left: -2px; 
+  background-size: 600%; 
+  z-index: -1; 
+  width: calc(100% + 4px); 
+  height: calc(100% + 4px); 
+  filter: blur(8px); 
+  animation: glowing 20s linear infinite; 
+  transition: opacity .3s ease-in-out; 
+  border-radius: 10px; 
+  opacity: 0; 
+} 
+
+/* Hover states */
+.rb:hover::before { 
+  opacity: 1; 
+} 
+
+/* Click states */
+.rb:active::after { 
+  background: transparent; 
+} 
+
+.rb:active { 
+  color: #000; 
+  font-weight: bold; 
+}
+
+/* ==========================================================================
+   GLOBAL KEYFRAMES
+   ========================================================================== */
+@keyframes fadeIn { 
+  from { opacity: 0; } 
+  to { opacity: 1; } 
+} 
+
+@keyframes hover { 
+  0%, 100% { transform: translateY(0px); } 
+  50% { transform: translateY(-10px); } 
+} 
+
+@keyframes glowing { 
+  0% { background-position: 0 0; } 
+  50% { background-position: 400% 0; } 
+  100% { background-position: 0 0; } 
+}
+
+/* ==========================================================================
+   SERVICES CONTAINER STYLES
+   ========================================================================== */
+.S-container { 
+  font-family: 'Quantico', 'arial', 'sans-serif'; 
+  color: white; 
+  text-align: center; 
+  padding: 40px 20px; 
+  border: 2px solid rgba(255, 255, 255, 0.249); 
+  width: 800px; /* Matched the 800px width of your title container for visual balance */
+  border-radius: 30px; 
+  background-color: rgba(96, 231, 255, 0.662); 
+  height: auto; /* Allows the container to expand based on content */
+  
+  /* Centers the card layout horizontally and adds breathing room underneath the fold */
+  margin: 60px auto; 
+}
+
+.card-container { 
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: center; 
+}
+
+.card{ 
+  background-color: rgba(117, 112, 112, 0.175); 
+  border: 2px solid rgba(255, 255, 255, 0.249); 
+  border-radius: 20px; 
+  padding: 20px; 
+  margin: 20px auto; 
+  width: 90%; /* Adjusted to fit nicely within the S-container */
+}
+
+h3 { 
+  font-size: 30px; 
+  margin-bottom: 10px; 
+  color: white; 
+  font-family: 'Quantico', 'arial', 'sans-serif';
+}
+
+p { 
+  font-size: 18px; 
+  color: white; 
+  line-height: 1.5; 
+  font-family: 'Quantico', 'arial', 'sans-serif';
+}
+
+.card:hover { 
+  box-shadow: 0px 0px 20px 5px rgba(96, 231, 255, 0.662); 
+  transition: transform 0.3s ease-in-out;
+  transform: scale(1.009); 
+}
+
+html {
+  scroll-behavior: smooth; /* Enables smooth scrolling for anchor links */
+}
+
+#services {
+  /* Adjust 80px to match the actual height of your sticky header */
+  scroll-margin-top: 80px; 
+}
+
+#booking {
+  /* Adjust 80px to match the actual height of your sticky header */
+  scroll-margin-top: 80px; 
+}
+
+.form-card {
+  background-color: rgba(117, 112, 112, 0.175);
+  border: 2px solid rgba(255, 255, 255, 0.249);
+  border-radius: 20px;
+  padding: 20px;
+  margin: 40px auto; /* Adds space above and below the form */
+  width: 50%; /* Adjusted to fit nicely within the S-container */
+  
+}
+
+.form {
+  width: 100%;
+  height: 800px; /* Adjusted height to fit the form content */
+  border: none; /* Removes default iframe border */
+  border-radius: 10px; /* Matches the card's border radius for visual consistency */
+}
+
+.form-title{
+  font-size: 30px;
+  margin-bottom: 20px;
+  font-family: 'Quantico', 'arial', 'sans-serif';
+  text-align: center;
+  color: white;
+}
+
+.about-card {
+  background-color: rgba(117, 112, 112, 0.175);
+  border: 2px solid rgba(255, 255, 255, 0.249);
+  border-radius: 20px;
+  padding: 20px;
+  margin: 40px auto; /* Adds space above and below the form */
+  width: 50%; /* Adjusted to fit nicely within the S-container */
+  text-align: center; /* Centers the text and image within the card */
+}
+
+.mahaha-image {
+  display: block;
+  margin: 20px auto; /* Centers the image horizontally */
+  max-width: 100%; /* Ensures the image scales down on smaller screens */
+  height: auto; /* Maintains aspect ratio */
+  border-radius: 10px; /* Optional: adds rounded corners to the image */
+}
+
+#about {
+  /* Adjust 80px to match the actual height of your sticky header */
+  scroll-margin-top: 80px; 
+}
+ .S-container {
+  animation: hover 3s ease-in-out infinite;
+}
+
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(96, 231, 255, 0.662);
+  border-top: 2px solid rgba(255, 255, 255, 0.249);
+  font-family: 'Quantico', 'arial', 'sans-serif';
+  color: white;
+  box-shadow: outset 0px 0px 20px 5px rgba(255, 255, 255, 0.131);
+}
+
+#myth {
+  /* Adjust 80px to match the actual height of your sticky header */
+  scroll-margin-top: 80px; 
+}
